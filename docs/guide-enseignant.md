@@ -10,12 +10,15 @@
 
 | | |
 |---|---|
-| **Adresse du jeu** | *À compléter après publication* : `https://<compte>.github.io/<dépôt>/` |
-| **Code QR** | *Généré après publication* (`npm run qr -- <adresse>`), à coller ici |
-| **Espace enseignant** | même adresse + `#enseignant` |
+| **Adresse du jeu** | **https://bftr.github.io/mission-francophonie/** |
+| **Code QR** | ci-dessous, ou en grand sur l'affiche à projeter : [affiche-qr.html](affiche-qr.html) |
+| **Espace enseignant** | https://bftr.github.io/mission-francophonie/#enseignant |
 | **Secours hors ligne** | le dossier `dist/` sur une clé USB (voir § 7) et le Plan B imprimable |
 
-Je ne fournis volontairement ni adresse ni code QR tant que le site n'est pas réellement publié et testé.
+![Code QR vers https://bftr.github.io/mission-francophonie/](qr-code.png)
+
+**Vérifié le 12 novembre 2026** sur le site publié : les 9 scénarios automatisés passent (partie complète, audio, son indisponible, accessibilité). Le code QR a été décodé par programme et mène exactement à l'adresse ci-dessus.
+**Pas encore vérifié** : l'ouverture sur un Chromebook d'élève, au réseau de l'école. C'est le test décisif.
 
 ## 2. Objectif de la période
 

@@ -1,4 +1,8 @@
 import { expect, test, type Page } from '@playwright/test';
+import { BASE_URL } from '../../playwright.config';
+
+/** Seul hôte autorisé : celui du site testé (local ou GitHub Pages). */
+const SITE_HOSTS = ['localhost', '127.0.0.1', new URL(BASE_URL).hostname];
 
 /** Clique un produit de l'étal par son nom accessible. */
 const produce = (page: Page, fr: string) => page.getByRole('button', { name: `Produit : ${fr}` });
@@ -28,7 +32,7 @@ test.describe('Parcours complet de la mission 1', () => {
     const failed: string[] = [];
     page.on('request', (r) => {
       const u = new URL(r.url());
-      if (!['localhost', '127.0.0.1'].includes(u.hostname) && u.protocol !== 'data:') external.push(r.url());
+      if (!SITE_HOSTS.includes(u.hostname) && u.protocol !== 'data:') external.push(r.url());
     });
     page.on('response', (r) => {
       if (r.status() >= 400) failed.push(`${r.status()} ${r.url()}`);

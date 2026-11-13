@@ -1,5 +1,9 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
+import { BASE_URL } from '../../playwright.config';
+
+/** Seul hôte autorisé : celui du site testé (local ou GitHub Pages). */
+const SITE_HOSTS = ['localhost', '127.0.0.1', new URL(BASE_URL).hostname];
 
 /**
  * Partie complète, comme un élève : 5 missions, erreurs volontaires, écran final.
@@ -24,7 +28,7 @@ test('partie complète : accueil → 5 stations → MISSION ACCOMPLIE', async ({
   const errors: string[] = [];
   page.on('request', (r) => {
     const u = new URL(r.url());
-    if (!['localhost', '127.0.0.1'].includes(u.hostname) && u.protocol !== 'data:') external.push(r.url());
+    if (!SITE_HOSTS.includes(u.hostname) && u.protocol !== 'data:') external.push(r.url());
   });
   page.on('response', (r) => {
     if (r.status() >= 400) failed.push(`${r.status()} ${r.url()}`);
@@ -256,7 +260,7 @@ test('réduction des animations respectée', async ({ browser }) => {
   const ctx = await browser.newContext({
     reducedMotion: 'reduce',
     viewport: { width: 1366, height: 768 },
-    baseURL: 'http://localhost:4173/mission-francophonie/',
+    baseURL: BASE_URL,
   });
   const page = await ctx.newPage();
   await page.goto('./');

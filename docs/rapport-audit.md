@@ -1,6 +1,6 @@
 # Rapport d'audit — Mission Francophonie : Le signal perdu
 
-*Version 1.0 · 12 novembre 2026 · application statique, non publiée*
+*Version 1.0 · 12 novembre 2026 · publiée sur https://bftr.github.io/mission-francophonie/*
 
 Ce rapport dit ce qui a été **vérifié**, ce qui a été **corrigé** et ce qui **reste à vérifier**. Il peut être remis à la direction avec la demande d'autorisation.
 
@@ -26,7 +26,7 @@ Ce rapport dit ce qui a été **vérifié**, ce qui a été **corrigé** et ce q
 | # | Condition | Responsable |
 |---|---|---|
 | 1 | Accord de la direction (ressource numérique utilisée avec des élèves) | Enseignant |
-| 2 | Publication sur GitHub Pages, puis test de l'adresse **sur un Chromebook d'élève, au réseau de l'école** | Enseignant |
+| 2 | ~~Publication sur GitHub Pages~~ (fait le 12/11/2026, 9 scénarios automatisés réussis sur le site publié) ; reste le test **sur un Chromebook d'élève, au réseau de l'école** | Enseignant |
 | 3 | Écoute des 10 messages audio (environ 50 s) : prononciation correcte? | Enseignant |
 | 4 | Une partie complète jouée par un adulte, chronomètre en main | Enseignant |
 | 5 | Écouteurs disponibles pour la mission 2 | École |
