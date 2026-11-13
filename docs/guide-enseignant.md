@@ -12,6 +12,7 @@
 |---|---|
 | **Adresse du jeu** | **https://bftr.github.io/mission-francophonie/** |
 | **Code QR** | ci-dessous, ou en grand sur l'affiche à projeter : [affiche-qr.html](affiche-qr.html) |
+| **Fiche élève** | [fiche-eleve.html](fiche-eleve.html) : description, adresse, code QR, étapes, cases pour les mots-clés. 2 fiches par feuille Lettre, à couper |
 | **Espace enseignant** | https://bftr.github.io/mission-francophonie/#enseignant |
 | **Secours hors ligne** | le dossier `dist/` sur une clé USB (voir § 7) et le Plan B imprimable |
 

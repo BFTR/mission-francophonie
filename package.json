@@ -17,7 +17,8 @@
     "check": "npm run typecheck && npm run lint && npm run test && npm run build && npm run test:e2e",
     "qr": "node scripts/make-qr.mjs",
     "audio:manifest": "node scripts/build-audio-manifest.mjs",
-    "typo:check": "node scripts/fr-typo.mjs --check src/content/bonus.ts src/content/finale.ts src/content/m1.ts src/content/m2.ts src/content/m3.ts src/content/m4.ts src/content/m5.ts src/content/stations.ts src/content/ui.ts src/missions/M1Market.tsx src/missions/M2Radio.tsx src/missions/M3Cafe.tsx src/missions/M4Town.tsx src/missions/M5Lighthouse.tsx src/screens/Finale.tsx src/screens/Home.tsx src/screens/MapScreen.tsx src/screens/Briefing.tsx src/screens/Teacher.tsx src/App.tsx src/ui/kit.tsx src/ui/missionKit.tsx src/ui/AudioClip.tsx src/ui/TopBar.tsx"
+    "typo:check": "node scripts/fr-typo.mjs --check src/content/bonus.ts src/content/finale.ts src/content/m1.ts src/content/m2.ts src/content/m3.ts src/content/m4.ts src/content/m5.ts src/content/stations.ts src/content/ui.ts src/missions/M1Market.tsx src/missions/M2Radio.tsx src/missions/M3Cafe.tsx src/missions/M4Town.tsx src/missions/M5Lighthouse.tsx src/screens/Finale.tsx src/screens/Home.tsx src/screens/MapScreen.tsx src/screens/Briefing.tsx src/screens/Teacher.tsx src/App.tsx src/ui/kit.tsx src/ui/missionKit.tsx src/ui/AudioClip.tsx src/ui/TopBar.tsx",
+    "fiche": "node scripts/make-fiche-eleve.mjs"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",

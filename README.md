@@ -10,6 +10,8 @@ Les élèves rallument cinq radios francophones des Amériques (Louisiane, Haït
 |---|---|
 | [docs/guide-enseignant.md](docs/guide-enseignant.md) | lancer la période, vérifier la réussite, régler les problèmes |
 | [docs/guide-pedagogique.md](docs/guide-pedagogique.md) | missions, attentes curriculaires, **corrigé complet** |
+| [docs/fiche-eleve.html](docs/fiche-eleve.html) | fiche élève à imprimer : description, lien, code QR (2 par feuille) |
+| [docs/affiche-qr.html](docs/affiche-qr.html) | affiche à projeter : code QR en grand |
 | [docs/plan-b.html](docs/plan-b.html) | activité papier imprimable (ouvrir dans Chrome → Imprimer) |
 | [docs/rapport-audit.md](docs/rapport-audit.md) | contrôles, corrections, risques, conditions d'utilisation |
 | [docs/01-audit-et-concept.md](docs/01-audit-et-concept.md) | audit initial, concept, curriculum vérifié |
@@ -43,7 +45,7 @@ Les tests de bout en bout demandent le navigateur de Playwright : `npx playwrigh
    ```bash
    npm run qr -- https://<compte>.github.io/<depot>/
    ```
-   Le script vérifie d'abord que la page répond et que les fichiers du jeu se chargent. Il produit `docs/qr-code.svg` et `docs/qr-code.png`.
+   Le script vérifie d'abord que la page répond et que les fichiers du jeu se chargent. Il produit `docs/qr-code.svg` et `docs/qr-code.png`. Ensuite, `npm run fiche` régénère la fiche élève avec ce code QR.
 7. Tester l'adresse **sur un Chromebook d'élève, au réseau de l'école**, puis compléter le § 1 du guide enseignant.
 
 Les chemins sont relatifs (`base: './'`) : le jeu fonctionne dans n'importe quel sous-dossier, sans domaine personnalisé.
