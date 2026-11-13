@@ -6,22 +6,22 @@
 
 ---
 
-> **13/11/2026 :** le domaine `bftr.github.io` est signalé par Google Navigation sécurisée et a été bloqué à l'école. Un déploiement Vercel est préparé ; voir [rapport-retour-classe.md](rapport-retour-classe.md). L'adresse et le code QR ci-dessous seront remplacés après ce déploiement.
+> **13/11/2026 :** le jeu est désormais hébergé sur **Vercel**. L'ancienne adresse `bftr.github.io` est signalée par Google Navigation sécurisée et a été bloquée à l'école : ne plus l'utiliser. Détails : [rapport-retour-classe.md](rapport-retour-classe.md).
 
 ## 1. Adresse du jeu et code QR
 
 | | |
 |---|---|
-| **Adresse du jeu** | **https://bftr.github.io/mission-francophonie/** |
+| **Adresse du jeu** | **https://mission-francophonie.vercel.app/** |
 | **Code QR** | ci-dessous, ou en grand sur l'affiche à projeter : [affiche-qr.html](affiche-qr.html) |
 | **Fiches à imprimer (PDF)** | [pdf/fiche-eleve.pdf](pdf/fiche-eleve.pdf) (1 page par élève, gros caractères, code QR) · [pdf/fiche-enseignant.pdf](pdf/fiche-enseignant.pdf) (4 pages) |
 | **Mode projecteur** | adresse du jeu + `#classe` (ou bouton « Mode projecteur ») : texte agrandi pour jouer en classe entière |
-| **Espace enseignant** | https://bftr.github.io/mission-francophonie/#enseignant |
+| **Espace enseignant** | https://mission-francophonie.vercel.app/#enseignant |
 | **Secours hors ligne** | le dossier `dist/` sur une clé USB (voir § 7) et le Plan B imprimable |
 
-![Code QR vers https://bftr.github.io/mission-francophonie/](qr-code.png)
+![Code QR vers https://mission-francophonie.vercel.app/](qr-code.png)
 
-**Vérifié le 12 novembre 2026** sur le site publié : les 9 scénarios automatisés passent (partie complète, audio, son indisponible, accessibilité). Le code QR a été décodé par programme et mène exactement à l'adresse ci-dessus.
+**Vérifié le 13 novembre 2026** sur le site Vercel : les 16 scénarios automatisés passent (partie complète, audio, en-têtes de sécurité, mode projecteur, accessibilité). Google Navigation sécurisée ne signale pas l'adresse. Le code QR a été décodé par programme.
 **Pas encore vérifié** : l'ouverture sur un Chromebook d'élève, au réseau de l'école. C'est le test décisif.
 
 ## 2. Objectif de la période
@@ -73,7 +73,7 @@ Repères par mission (estimation) : M1 ≈ 7 min · M2 ≈ 7 min · M3 ≈ 6 min
 
 | Problème | Solution |
 |---|---|
-| La page ne s'ouvre pas | Le filtre réseau bloque peut-être `github.io` : utilisez le secours (§ 7) ou le Plan B. |
+| La page ne s'ouvre pas | Le filtre réseau bloque peut-être l'adresse : ne pas contourner l'avertissement, noter le message exact, utiliser le mode projecteur sur votre appareil ou le Plan B. |
 | Pas de son | Vérifier le volume ou les écouteurs. Sinon, bouton **Texte** (la mission reste faisable). |
 | Bandeau « ce navigateur ne peut pas sauvegarder » | Navigation privée ou stockage bloqué : le jeu fonctionne, mais un rechargement repart du début. Terminer d'une traite. |
 | Un élève veut recommencer | Menu (☰) → Recommencer → confirmer. |

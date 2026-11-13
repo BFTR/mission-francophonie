@@ -42,6 +42,9 @@ Les tests de bout en bout demandent le navigateur de Playwright : `npx playwrigh
 3. Sur GitHub : **Settings → Pages → Source : GitHub Actions**.
 4. **Actions → « Publier sur GitHub Pages » → Run workflow.** Le flux vérifie le typage, le lint et les tests, compile, puis publie. Il ne se lance jamais tout seul.
 5. Ouvrir l'adresse affichée par le flux (`https://<compte>.github.io/<depot>/`) et jouer une mission.
+
+> **Hébergement actuel : Vercel** (https://mission-francophonie.vercel.app/), importé depuis ce dépôt. Chaque envoi sur `main` redéploie automatiquement. Les en-têtes de sécurité sont dans `vercel.json`. GitHub Pages reste possible, mais le domaine `bftr.github.io` est signalé par Google Navigation sécurisée (voir `docs/rapport-retour-classe.md`).
+> Tester le site en ligne : `E2E_BASE_URL=https://mission-francophonie.vercel.app/ npx playwright test`.
 6. Générer le code QR **vers l'adresse réellement publiée** :
    ```bash
    npm run qr -- https://<compte>.github.io/<depot>/

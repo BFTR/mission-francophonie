@@ -5,7 +5,7 @@
 | Problème signalé | Statut |
 |---|---|
 | L'audio lit parfois le message précédent | **Causes confirmées, corrigées, testées** (2 causes) |
-| Jeu inaccessible depuis l'école, avertissement de sécurité | **Cause très probable identifiée** (signalement Google du domaine `bftr.github.io`). Solution prête : déploiement Vercel (**à autoriser**). Accès scolaire **non confirmé** tant qu'il n'est pas testé sur un Chromebook d'élève |
+| Jeu inaccessible depuis l'école, avertissement de sécurité | **Cause très probable identifiée** (signalement Google du domaine `bftr.github.io`). **Jeu déployé sur Vercel** : https://mission-francophonie.vercel.app/ (non signalé, 16/16 tests en ligne). Accès scolaire **non confirmé** tant qu'il n'est pas testé sur un Chromebook d'élève |
 | Jouer sans Chromebooks élèves | **Mode projecteur ajouté** |
 
 ---
@@ -40,7 +40,14 @@ Aucun texte, aucun fichier audio et aucune activité n'ont changé.
 - Ajout de [vercel.json](../vercel.json) avec des en-têtes de sécurité stricts : politique de contenu limitée au site lui-même, micro et caméra interdits, aucune intégration dans d'autres sites, pas d'indexation.
 - Testé localement avec ces en-têtes : aucune violation, polices et audio fonctionnels.
 
-**Non fait** : la mise en ligne sur Vercel (votre accord et votre compte sont nécessaires). Nous ne contournons aucun avertissement de sécurité.
+**Fait le 13/11/2026** : mise en ligne sur **https://mission-francophonie.vercel.app/** (forfait Hobby, branche `main`). Vérifié en ligne :
+- Google Navigation sécurisée : aucun signalement ;
+- HTTPS valide (Google Trust Services, `*.vercel.app`, jusqu'au 29/01/2027), redirection `http` → `https` ;
+- les 8 en-têtes de sécurité de `vercel.json` sont présents ;
+- **16/16 tests de bout en bout réussis sur le site en ligne** (audio et mode projecteur compris), 0 violation d'accessibilité ;
+- code QR, fiches PDF et affiche régénérés vers la nouvelle adresse, tous décodés.
+
+Aucun avertissement de sécurité n'est contourné.
 
 **Démarche facultative de votre côté** : demander à Google un réexamen de `bftr.github.io` (formulaire de signalement d'erreur de Navigation sécurisée, ou Google Search Console).
 

@@ -1,2 +1,2 @@
-https://bftr.github.io/mission-francophonie/
-Vérifié le 2026-11-12 22 h 32 min 27 s
+https://mission-francophonie.vercel.app/
+Vérifié le 2026-11-13 17 h 26 min 23 s

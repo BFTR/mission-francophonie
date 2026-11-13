@@ -130,7 +130,7 @@ const html = `<!doctype html>
     <h2>Problèmes fréquents</h2>
     <table>
       <tr><th style="width:40%">Problème</th><th>Solution</th></tr>
-      <tr><td>La page ne s’ouvre pas</td><td>Filtre réseau de l’école (github.io bloqué?) → Plan B imprimable.</td></tr>
+      <tr><td>La page ne s’ouvre pas</td><td>Filtre réseau de l’école : noter le message exact, passer en mode projecteur ou au Plan B imprimable.</td></tr>
       <tr><td>Pas de son</td><td>Volume, écouteurs. Sinon bouton <strong>Texte</strong> : la mission reste faisable.</td></tr>
       <tr><td>« Ce navigateur ne peut pas sauvegarder »</td><td>Navigation privée ou stockage bloqué : le jeu marche, mais un rechargement repart du début.</td></tr>
       <tr><td>Recommencer</td><td>Menu (☰) → Recommencer → confirmer.</td></tr>

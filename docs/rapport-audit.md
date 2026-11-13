@@ -1,6 +1,6 @@
 # Rapport d'audit — Mission Francophonie : Le signal perdu
 
-*Version 1.0 · 12 novembre 2026 · publiée sur https://bftr.github.io/mission-francophonie/*
+*Version 1.1 · 13 novembre 2026 · publiée sur https://mission-francophonie.vercel.app/ (voir aussi docs/rapport-retour-classe.md)*
 
 Ce rapport dit ce qui a été **vérifié**, ce qui a été **corrigé** et ce qui **reste à vérifier**. Il peut être remis à la direction avec la demande d'autorisation.
 
@@ -116,7 +116,7 @@ Ce rapport dit ce qui a été **vérifié**, ce qui a été **corrigé** et ce q
 
 | Gravité | Risque | Atténuation |
 |---|---|---|
-| Important | `github.io` bloqué par le filtre de l'école | test préalable ; Plan B imprimé |
+| Important | Adresse bloquée par le filtre de l'école (constaté avec `github.io`, le 12/11/2026) | hébergement déplacé sur Vercel ; test sur Chromebook d'élève ; mode projecteur ; Plan B |
 | Important | Durées non mesurées avec des élèves | essai adulte ; dossiers bonus pour les rapides ; sauvegarde pour finir plus tard |
 | Important | Prononciation des voix non écoutée | écoute de 50 s avant la classe ; fichiers remplaçables par des enregistrements |
 | Important | Élève daltonien : poivron rouge ou vert | les deux diffèrent aussi par la clarté ; indice 3 ; observation de l'enseignant |

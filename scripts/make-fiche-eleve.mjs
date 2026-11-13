@@ -9,9 +9,15 @@ const svg = readFileSync('docs/qr-code.svg', 'utf8').replace(
   '<svg ',
   `<svg role="img" aria-label="Code QR vers ${url}" width="100%" height="100%" `,
 );
+// Adresse coupée en morceaux insécables : avant le premier point du domaine et après chaque « / ».
 const urlLines = short
   .split('/')
-  .map((p, i, arr) => `<span>${p}${i < arr.length - 1 ? '/' : ''}</span>`)
+  .flatMap((seg, i, arr) => {
+    const part = seg + (i < arr.length - 1 ? '/' : '');
+    const dot = i === 0 ? part.indexOf('.') : -1;
+    return dot > 0 ? [part.slice(0, dot), part.slice(dot)] : [part];
+  })
+  .map((p) => `<span>${p}</span>`)
   .join('');
 
 /** Typographie : espaces insécables dans « », avant : et dans « 50 s » (texte HTML seulement). */
@@ -46,7 +52,7 @@ const html = `<!doctype html>
   p.en { margin: 2mm 0 0; }
   .qrbox { text-align: center; }
   .qr { width: 62mm; height: 62mm; border: 2.5px solid #1f2a44; border-radius: 6px; padding: 2.5mm; background: #fff; }
-  .url { margin: 2.5mm 0 0; font-weight: 800; font-size: 15pt; line-height: 1.25; }
+  .url { margin: 2.5mm 0 0; font-weight: 800; font-size: 14pt; line-height: 1.25; }
   .url span { display: block; white-space: nowrap; }
   h2 { margin: 0 0 1.5mm; font-size: 16pt; }
   .steps { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 5mm; counter-reset: s; }
