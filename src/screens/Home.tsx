@@ -78,6 +78,15 @@ export function Home({ hasProgress, onRestart }: { hasProgress: boolean; onResta
             </p>
           )}
           <Bi t={UI.groupNote} force className="home__note" />
+          <button
+            type="button"
+            className="btn btn--quiet home__projector"
+            aria-pressed={state.settings.projector}
+            onClick={() => dispatch({ type: 'setProjector', on: !state.settings.projector })}
+          >
+            {state.settings.projector ? 'Mode projecteur : activé' : 'Mode projecteur (classe entière)'}
+            <span lang="en"> · {state.settings.projector ? 'Projector mode: on' : 'Projector mode'}</span>
+          </button>
           <div className="home__actions">
             <button type="button" className="btn btn--primary btn--lg" onClick={start}>
               <BtnLabel t={hasProgress ? UI.resume : UI.start} />

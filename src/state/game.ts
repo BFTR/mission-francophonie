@@ -44,7 +44,8 @@ export type GameState = {
   m4: M4Progress;
   m5: M5Progress;
   bonus: BonusProgress;
-  settings: { sound: boolean; showEnglish: boolean };
+  /** projector : mode classe entière (texte et boutons agrandis pour le projecteur). */
+  settings: { sound: boolean; showEnglish: boolean; projector: boolean };
 };
 
 const emptyStats = (): StationStats => ({ errors: 0, hints: 0, usedTranscript: false });
@@ -76,7 +77,7 @@ export function initialState(): GameState {
     m4: initialM4(),
     m5: initialM5(),
     bonus: initialBonus(),
-    settings: { sound: true, showEnglish: true },
+    settings: { sound: true, showEnglish: true, projector: false },
   };
 }
 
@@ -98,6 +99,7 @@ export type Action =
   | { type: 'completeStation'; id: StationId }
   | { type: 'toggleSound' }
   | { type: 'toggleEnglish' }
+  | { type: 'setProjector'; on: boolean }
   | { type: 'reset' };
 
 export function reducer(state: GameState, action: Action): GameState {
@@ -175,6 +177,8 @@ export function reducer(state: GameState, action: Action): GameState {
       return { ...state, settings: { ...state.settings, sound: !state.settings.sound } };
     case 'toggleEnglish':
       return { ...state, settings: { ...state.settings, showEnglish: !state.settings.showEnglish } };
+    case 'setProjector':
+      return { ...state, settings: { ...state.settings, projector: action.on } };
     case 'reset': {
       // On garde les réglages (son, traduction) : ce ne sont pas des progrès.
       const fresh = initialState();
@@ -321,6 +325,7 @@ export function sanitizeState(raw: unknown): GameState | null {
   if (isObj(raw.settings)) {
     if (typeof raw.settings.sound === 'boolean') settings.sound = raw.settings.sound;
     if (typeof raw.settings.showEnglish === 'boolean') settings.showEnglish = raw.settings.showEnglish;
+    if (typeof raw.settings.projector === 'boolean') settings.projector = raw.settings.projector;
   }
 
   let screen: Screen = (['home', 'briefing', 'map', 'mission', 'finale', 'teacher'] as const).includes(

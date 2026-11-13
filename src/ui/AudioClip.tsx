@@ -5,12 +5,36 @@ import { useGame } from '../state/context';
 /**
  * Lecteur d'un message oral.
  * 1. Fichier MP3 préenregistré (public/audio/) : solution principale.
- * 2. Si le fichier ne se charge pas : synthèse vocale du navigateur, seulement si une voix
- *    française existe sur l'appareil.
+ * 2. Si le fichier ne se charge VRAIMENT pas : synthèse vocale du navigateur, seulement si une
+ *    voix française existe sur l'appareil.
  * 3. Sinon : message clair + transcription.
  * Aucun son ne démarre sans un clic de l'élève. Le micro n'est jamais demandé.
+ *
+ * Garanties (retour de classe du 12/11/2026, voir tests/e2e/audio.spec.ts) :
+ * - un lecteur = UN fichier : quand le message change, un nouveau lecteur est créé (clé = fichier) ;
+ *   l'ancien est arrêté et détruit ;
+ * - un seul son à la fois dans tout le jeu ;
+ * - une lecture annulée volontairement (Arrêter, autre message, changement d'écran) ne déclenche
+ *   jamais la voix de secours ; les réponses tardives d'une lecture périmée sont ignorées.
  */
 
+type Props = {
+  /** Pas de bouton « Texte » (quand la réplique est déjà affichée à l'écran). */
+  noText?: boolean;
+  file: string;
+  transcript: string;
+  /** Passage à surligner dans la transcription (indice). */
+  highlight?: string;
+  forceHighlight?: boolean;
+  /** Appelé la première fois que la transcription est affichée (adaptation). */
+  onTranscript?: () => void;
+  onPlay?: () => void;
+  label?: string;
+  tone?: 'paper' | 'console';
+  compact?: boolean;
+};
+
+/** Le lecteur actif dans tout le jeu (un seul son à la fois). */
 let current: { stop: () => void } | null = null;
 
 function frenchVoice(): SpeechSynthesisVoice | null {
@@ -19,8 +43,18 @@ function frenchVoice(): SpeechSynthesisVoice | null {
   return voices.find((v) => v.lang === 'fr-CA') ?? voices.find((v) => v.lang.toLowerCase().startsWith('fr')) ?? null;
 }
 
-/** Configure l'élément audio (hors composant : l'objet est externe à React). */
-function prepare(el: HTMLAudioElement, rate: number, onEnd: () => void, onFail: () => void) {
+/** Arrête et libère un élément audio (hors composant : l'objet est externe à React). */
+function release(el: HTMLAudioElement | null) {
+  if (!el) return;
+  el.onended = null;
+  el.onerror = null;
+  el.pause();
+  el.removeAttribute('src');
+  el.load();
+}
+
+/** Lance la lecture ; renvoie la promesse de play(). */
+function start(el: HTMLAudioElement, rate: number, onEnd: () => void, onFail: () => void) {
   el.playbackRate = rate;
   el.onended = onEnd;
   el.onerror = onFail;
@@ -36,9 +70,14 @@ export function audioUrl(file: string): string {
   return `${import.meta.env.BASE_URL}audio/${file}`;
 }
 
+/** Point d'entrée : la clé force un lecteur neuf pour chaque fichier. */
+export function AudioClip(props: Props) {
+  return <AudioClipPlayer key={props.file} {...props} />;
+}
+
 type Status = 'idle' | 'playing' | 'fallback' | 'unavailable';
 
-export function AudioClip({
+function AudioClipPlayer({
   file,
   transcript,
   highlight,
@@ -49,21 +88,7 @@ export function AudioClip({
   tone = 'paper',
   compact = false,
   noText = false,
-}: {
-  /** Pas de bouton « Texte » (quand la réplique est déjà affichée à l'écran). */
-  noText?: boolean;
-  file: string;
-  transcript: string;
-  /** Passage à surligner dans la transcription (indice). */
-  highlight?: string;
-  forceHighlight?: boolean;
-  /** Appelé la première fois que la transcription est affichée (adaptation). */
-  onTranscript?: () => void;
-  onPlay?: () => void;
-  label?: string;
-  tone?: 'paper' | 'console';
-  compact?: boolean;
-}) {
+}: Props) {
   const { state } = useGame();
   const [status, setStatus] = useState<Status>('idle');
   const [slow, setSlow] = useState(false);
@@ -71,23 +96,32 @@ export function AudioClip({
   const [showText, setShowText] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const reportedRef = useRef(false);
+  /** Numéro de la lecture en cours : toute réponse d'une lecture plus ancienne est ignorée. */
+  const runRef = useRef(0);
+  const selfRef = useRef<{ stop: () => void } | null>(null);
 
+  // Démontage (autre message, autre écran) : on coupe tout et on libère le fichier.
   useEffect(
     () => () => {
-      audioRef.current?.pause();
+      runRef.current += 1;
+      release(audioRef.current);
+      audioRef.current = null;
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      if (current === selfRef.current) current = null;
     },
     [],
   );
 
   const stop = () => {
+    runRef.current += 1; // invalide les réponses tardives (AbortError, onended…)
     audioRef.current?.pause();
     if (audioRef.current) audioRef.current.currentTime = 0;
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     setStatus((s) => (s === 'playing' || s === 'fallback' ? 'idle' : s));
   };
 
-  const speak = () => {
+  const speak = (run: number) => {
+    if (run !== runRef.current) return; // lecture périmée : on ne parle pas
     const v = frenchVoice();
     if (!v) {
       setStatus('unavailable');
@@ -97,8 +131,8 @@ export function AudioClip({
     u.voice = v;
     u.lang = v.lang;
     u.rate = slow ? 0.75 : 0.9;
-    u.onend = () => setStatus('idle');
-    u.onerror = () => setStatus('unavailable');
+    u.onend = () => run === runRef.current && setStatus('idle');
+    u.onerror = () => run === runRef.current && setStatus('unavailable');
     setStatus('fallback');
     window.speechSynthesis.speak(u);
   };
@@ -108,14 +142,25 @@ export function AudioClip({
       stop();
       return;
     }
-    current?.stop();
-    current = { stop };
+    if (current && current !== selfRef.current) current.stop();
+    selfRef.current = { stop };
+    current = selfRef.current;
+    const run = ++runRef.current;
     setPlays((n) => n + 1);
     onPlay?.();
     const a = audioRef.current ?? new Audio(audioUrl(file));
     audioRef.current = a;
     setStatus('playing');
-    prepare(a, slow ? 0.8 : 1, () => setStatus('idle'), speak).catch(() => speak());
+    start(
+      a,
+      slow ? 0.8 : 1,
+      () => run === runRef.current && setStatus('idle'),
+      () => speak(run), // vraie erreur de chargement du fichier
+    ).catch((e: unknown) => {
+      // Une lecture interrompue volontairement (pause pendant le chargement) n'est pas une panne.
+      if (e instanceof DOMException && e.name === 'AbortError') return;
+      speak(run);
+    });
   };
 
   const toggleText = () => {
@@ -130,26 +175,18 @@ export function AudioClip({
   const shown = forceHighlight || showText;
   const parts = highlight && transcript.includes(highlight) ? transcript.split(highlight) : null;
   const showEn = state.settings.showEnglish;
+  const active = status === 'playing' || status === 'fallback';
 
   return (
-    <div className={`clip clip--${tone} ${compact ? 'clip--compact' : ''}`}>
+    <div className={`clip clip--${tone} ${compact ? 'clip--compact' : ''}`} data-audio={file}>
       <div className="clip__row">
-        <button
-          type="button"
-          className="btn btn--primary clip__play"
-          onClick={play}
-          aria-pressed={status === 'playing' || status === 'fallback'}
-        >
-          {status === 'playing' || status === 'fallback' ? (
-            <IconPlayerStop size={22} aria-hidden="true" />
-          ) : (
-            <IconPlayerPlay size={22} aria-hidden="true" />
-          )}
+        <button type="button" className="btn btn--primary clip__play" onClick={play} aria-pressed={active}>
+          {active ? <IconPlayerStop size={22} aria-hidden="true" /> : <IconPlayerPlay size={22} aria-hidden="true" />}
           <span>
-            {status === 'playing' || status === 'fallback' ? 'Arrêter' : plays > 0 ? 'Réécouter' : label}
+            {active ? 'Arrêter' : plays > 0 ? 'Réécouter' : label}
             {showEn && !compact && (
               <span className="clip__en" lang="en">
-                {status === 'playing' || status === 'fallback' ? 'Stop' : plays > 0 ? 'Listen again' : 'Listen'}
+                {active ? 'Stop' : plays > 0 ? 'Listen again' : 'Listen'}
               </span>
             )}
           </span>

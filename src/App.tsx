@@ -59,6 +59,9 @@ function boot(): { state: GameState; status: LoadStatus } {
   // Espace enseignant : adresse dédiée …/#enseignant (discrétion, pas une sécurité).
   if (typeof window !== 'undefined' && window.location.hash === '#enseignant')
     return { state: { ...s, screen: 'teacher' }, status };
+  // Mode classe entière : adresse …/#classe (projecteur).
+  if (typeof window !== 'undefined' && window.location.hash === '#classe')
+    return { state: { ...s, settings: { ...s.settings, projector: true } }, status };
   return { state: s, status };
 }
 
@@ -78,10 +81,16 @@ export default function App() {
 
   useEffect(() => setSfxEnabled(state.settings.sound), [state.settings.sound]);
 
+  // Mode projecteur : agrandit tout le texte et les boutons (attribut sur <html>).
+  useEffect(() => {
+    document.documentElement.toggleAttribute('data-projector', state.settings.projector);
+  }, [state.settings.projector]);
+
   // Espace enseignant aussi quand seule l'ancre de l'adresse change (…/#enseignant).
   useEffect(() => {
     const onHash = () => {
       if (window.location.hash === '#enseignant') dispatch({ type: 'goto', screen: 'teacher' });
+      if (window.location.hash === '#classe') dispatch({ type: 'setProjector', on: true });
     };
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
@@ -273,6 +282,20 @@ export default function App() {
               }}
             >
               <BtnLabel t={UI.restart} />
+            </button>
+            <button
+              type="button"
+              className="btn btn--secondary"
+              aria-pressed={state.settings.projector}
+              onClick={() => dispatch({ type: 'setProjector', on: !state.settings.projector })}
+            >
+              <BtnLabel
+                t={
+                  state.settings.projector
+                    ? { fr: 'Mode projecteur : activé', en: 'Projector mode: on' }
+                    : { fr: 'Mode projecteur (classe entière)', en: 'Projector mode (whole class)' }
+                }
+              />
             </button>
           </div>
           <div className="dialog__actions">

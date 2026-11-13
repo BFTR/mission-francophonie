@@ -110,3 +110,17 @@ button {
 .app {
   overflow-x: clip;
 }
+
+/* ---------- Mode projecteur (classe entière) ----------
+   Tout le texte du jeu est en rem : on agrandit la base de 125 %.
+   Les mises en page restent fluides ; les zones de jeu peuvent s'étendre. */
+html[data-projector] {
+  font-size: 125%;
+}
+html[data-projector] .screen,
+html[data-projector] .topbar__inner {
+  max-width: 1600px;
+}
+html[data-projector] .btn {
+  min-height: 56px;
+}

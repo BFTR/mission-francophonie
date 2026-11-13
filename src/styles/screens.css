@@ -985,3 +985,12 @@
   position: static;
   display: inline-block;
 }
+.home__projector {
+  align-self: flex-start;
+  font-size: var(--fs-sm);
+}
+.home__projector[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+}

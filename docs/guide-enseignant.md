@@ -6,13 +6,16 @@
 
 ---
 
+> **13/11/2026 :** le domaine `bftr.github.io` est signalé par Google Navigation sécurisée et a été bloqué à l'école. Un déploiement Vercel est préparé ; voir [rapport-retour-classe.md](rapport-retour-classe.md). L'adresse et le code QR ci-dessous seront remplacés après ce déploiement.
+
 ## 1. Adresse du jeu et code QR
 
 | | |
 |---|---|
 | **Adresse du jeu** | **https://bftr.github.io/mission-francophonie/** |
 | **Code QR** | ci-dessous, ou en grand sur l'affiche à projeter : [affiche-qr.html](affiche-qr.html) |
-| **Fiche élève** | [fiche-eleve.html](fiche-eleve.html) : description, adresse, code QR, étapes, cases pour les mots-clés. 2 fiches par feuille Lettre, à couper |
+| **Fiches à imprimer (PDF)** | [pdf/fiche-eleve.pdf](pdf/fiche-eleve.pdf) (1 page par élève, gros caractères, code QR) · [pdf/fiche-enseignant.pdf](pdf/fiche-enseignant.pdf) (4 pages) |
+| **Mode projecteur** | adresse du jeu + `#classe` (ou bouton « Mode projecteur ») : texte agrandi pour jouer en classe entière |
 | **Espace enseignant** | https://bftr.github.io/mission-francophonie/#enseignant |
 | **Secours hors ligne** | le dossier `dist/` sur une clé USB (voir § 7) et le Plan B imprimable |
 
