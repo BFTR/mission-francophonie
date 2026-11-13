@@ -1,0 +1,53 @@
+{
+  "name": "mission-francophonie",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Jeu d'aventure pédagogique statique pour Grade 7 Core French (Ontario).",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
+    "lint": "eslint . && npm run typo:check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "gen:map": "node scripts/gen-map.mjs",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run build && npm run test:e2e",
+    "qr": "node scripts/make-qr.mjs",
+    "audio:manifest": "node scripts/build-audio-manifest.mjs",
+    "typo:check": "node scripts/fr-typo.mjs --check src/content/bonus.ts src/content/finale.ts src/content/m1.ts src/content/m2.ts src/content/m3.ts src/content/m4.ts src/content/m5.ts src/content/stations.ts src/content/ui.ts src/missions/M1Market.tsx src/missions/M2Radio.tsx src/missions/M3Cafe.tsx src/missions/M4Town.tsx src/missions/M5Lighthouse.tsx src/screens/Finale.tsx src/screens/Home.tsx src/screens/MapScreen.tsx src/screens/Briefing.tsx src/screens/Teacher.tsx src/App.tsx src/ui/kit.tsx src/ui/missionKit.tsx src/ui/AudioClip.tsx src/ui/TopBar.tsx"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@tabler/icons-react": "^3.51.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.10",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "d3-geo": "^3.1.2",
+    "eslint": "^10.14.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.10.1",
+    "qrcode": "^1.5.4",
+    "topojson-client": "^3.1.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0",
+    "world-atlas": "^2.0.2"
+  }
+}

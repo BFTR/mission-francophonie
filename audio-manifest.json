@@ -1,0 +1,54 @@
+{
+  "clips": [
+    {
+      "id": "m2-hote",
+      "voice": "upmc-m",
+      "text": "Bonjour, agent! Je suis Jean-Robert, de Radio Écho Haïti. Nous avons trois messages sur le festival. Écoute-les et règle la console."
+    },
+    {
+      "id": "m2-meteo",
+      "voice": "siwis",
+      "text": "Bonjour, ici Radio Écho, à Port-au-Prince! Ce matin, il pleut. Mais samedi, il va faire soleil!"
+    },
+    {
+      "id": "m2-jour",
+      "voice": "upmc-m",
+      "text": "Attention, attention! Le grand festival n’est pas vendredi. Le festival, c’est samedi!"
+    },
+    {
+      "id": "m2-heure",
+      "voice": "siwis",
+      "text": "Le concert de musique commence à midi. Mais le festival commence à quatorze heures."
+    },
+    {
+      "id": "m3-j1",
+      "voice": "upmc-f",
+      "text": "Bonjour! Bienvenue au Café Madinina. Qu’est-ce que vous désirez?"
+    },
+    {
+      "id": "m3-j2",
+      "voice": "upmc-f",
+      "text": "Voilà votre jus. Vous venez d’où?"
+    },
+    {
+      "id": "m3-j3",
+      "voice": "upmc-f",
+      "text": "Ottawa! C’est loin! Et pourquoi êtes-vous ici?"
+    },
+    {
+      "id": "m3-t1",
+      "voice": "upmc-m",
+      "text": "Salut! Ma grand-mère dit que tu cherches le mot-clé. Moi, c’est Théo. Et toi, tu es qui?"
+    },
+    {
+      "id": "m3-t2",
+      "voice": "upmc-m",
+      "text": "Cool! Tu veux le mot-clé? D’abord, une question : tu aimes la musique?"
+    },
+    {
+      "id": "m3-t3",
+      "voice": "upmc-m",
+      "text": "Moi aussi! Au festival, il y a de la musique. Le mot-clé, c’est un mot pour inviter tout le monde. Tu le trouves?"
+    }
+  ]
+}

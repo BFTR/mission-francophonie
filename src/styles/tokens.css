@@ -1,0 +1,78 @@
+/* =========================================================
+   Système de design — Direction A « Carnet de terrain »
+   Papier chaud, encre marine, rouge signal, vert sarcelle.
+   Chaque jeton a une fonction ; voir docs/design-system.md.
+   ========================================================= */
+:root {
+  /* Surfaces */
+  --paper: #f4ebdd; /* fond de page */
+  --paper-deep: #e8d8bf; /* terres de la carte, zones secondaires */
+  --sheet: #fffdf8; /* fiches, panneaux de lecture */
+  --line: #cdbb9c; /* filets discrets */
+
+  /* Encre */
+  --ink: #1f2a44; /* texte principal (contrastes vérifiés par tests/unit/contrast.test.ts) */
+  --ink-soft: #4a5468; /* texte secondaire, traductions */
+  --ink-faint: #5a6275; /* métadonnées uniquement — contraste vérifié par tests/unit/contrast.test.ts */
+
+  /* Couleurs d'action et sémantiques (toujours doublées d'une icône ou d'un texte) */
+  --signal: #b5381f; /* action principale  */
+  --signal-deep: #8f2b17; /* survol / pressé */
+  --signal-tint: #f6ddd3;
+  --teal: #23695b; /* réussite  */
+  --teal-tint: #d5ebe3;
+  --mustard: #e3a92b; /* indices, surlignage ; texte --ink */
+  --mustard-tint: #f8e7bd;
+
+  /* Console radio (mission 2 uniquement) */
+  --console: #13262b;
+  --console-panel: #1b3238;
+  --amber: #e9b44c;
+  --cream: #f2e6cf;
+
+  /* Typographie */
+  --font-display: 'Bricolage Grotesque Variable', 'Trebuchet MS', sans-serif;
+  --font-text: 'Atkinson Hyperlegible', 'Verdana', sans-serif;
+  --fs-xs: 0.875rem; /* 14 px — métadonnées */
+  --fs-sm: 1rem; /* 16 px — traductions, aides */
+  --fs-md: 1.125rem; /* 18 px — texte courant */
+  --fs-lg: 1.375rem; /* 22 px — consignes */
+  --fs-xl: 1.75rem; /* 28 px — titres d'écran */
+  --fs-2xl: 2.5rem; /* 40 px — grands titres */
+  --fs-3xl: 3.5rem; /* 56 px — titre du jeu */
+  --lh-tight: 1.15;
+  --lh-text: 1.5;
+
+  /* Espacements (base 4 px) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+
+  /* Formes */
+  --radius-sm: 4px; /* boutons, étiquettes : bord « imprimé » */
+  --radius-md: 8px; /* panneaux */
+  --border: 2px solid var(--ink);
+  --print-offset: 3px 3px 0 var(--ink); /* ombre d'impression, unique, réservée aux éléments cliquables */
+
+  /* Mouvement */
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 480ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-back: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  --focus: 0 0 0 3px var(--paper), 0 0 0 6px var(--signal);
+  --topbar-h: 64px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}
