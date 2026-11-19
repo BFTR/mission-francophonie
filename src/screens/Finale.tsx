@@ -4,7 +4,7 @@ import { BONUS } from '../content/bonus';
 import { FINALE } from '../content/finale';
 import { STATIONS } from '../content/stations';
 import { STATION_IDS } from '../content/types';
-import { UI } from '../content/ui';
+import { CREDIT, UI } from '../content/ui';
 import { completionCode } from '../engine/code';
 import { useGame } from '../state/context';
 import { NetworkMap } from '../art/MapArt';
@@ -125,6 +125,12 @@ export function Finale() {
         </section>
       </div>
 
+      <p className="signature signature--center">
+        <span lang="fr">Mission Francophonie · {CREDIT.fr}</span>
+        <span className="signature__en" lang="en">
+          {CREDIT.en}
+        </span>
+      </p>
       <div className="finale__actions">
         <button type="button" className="btn btn--secondary" onClick={() => dispatch({ type: 'goto', screen: 'map' })}>
           <BtnLabel t={{ fr: 'Faire les dossiers secrets', en: 'Do the secret files' }} />

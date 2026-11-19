@@ -1,7 +1,7 @@
 import { IconArrowRight } from '@tabler/icons-react';
 import { useState } from 'react';
 import { GROUPS } from '../content/types';
-import { GAME_SUBTITLE, GAME_TITLE, UI } from '../content/ui';
+import { CREDIT, GAME_SUBTITLE, GAME_TITLE, UI } from '../content/ui';
 import { useGame } from '../state/context';
 import { fragmentsCount } from '../state/game';
 import { Bi, BtnLabel } from '../ui/kit';
@@ -29,6 +29,12 @@ export function Home({ hasProgress, onRestart }: { hasProgress: boolean; onResta
           <p className="tag tag--boxed">Core French · Grade 7</p>
           <h1 className="home__h1">{GAME_TITLE}</h1>
           <p className="home__sub">{GAME_SUBTITLE}</p>
+          <p className="signature">
+            <span lang="fr">{CREDIT.fr}</span>
+            <span className="signature__en" lang="en">
+              {CREDIT.en}
+            </span>
+          </p>
           <Bi
             className="home__pitch"
             force

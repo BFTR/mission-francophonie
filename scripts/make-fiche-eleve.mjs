@@ -77,7 +77,7 @@ const html = `<!doctype html>
 <body>
   <main class="fiche">
     <header>
-      <p class="tag">Core French · Grade 7</p>
+      <p class="tag">Core French · Grade 7 · Un jeu de M. Thierry</p>
       <h1>Mission Francophonie</h1>
       <div class="row">
         <p class="sub">Le signal perdu</p>

@@ -60,6 +60,7 @@ const html = `<!doctype html>
       <p class="tag">Fiche enseignant · Core French · Grade 7</p>
       <h1>Mission Francophonie</h1>
       <p class="sub">Le signal perdu</p>
+      <p class="meta"><strong>Un jeu conçu par M. Thierry</strong></p>
       <p class="meta">Une période de 50 minutes · Chromebook · écouteurs · sans compte élève</p>
       <p class="addr">${url}<small>Espace enseignant (codes du jour) :<span>${url}#enseignant</span></small></p>
     </div>

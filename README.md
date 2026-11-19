@@ -1,5 +1,7 @@
 # Mission Francophonie : Le signal perdu
 
+*Un jeu conçu par M. Thierry · A game created by Mr. Thierry*
+
 Jeu d'aventure pédagogique en français pour la **7e année, Core French (Ontario)**. Application web 100 % statique, sans compte élève et sans collecte de données, prévue pour GitHub Pages et les Chromebooks.
 
 Les élèves rallument cinq radios francophones des Amériques (Louisiane, Haïti, Martinique, Guyane, Saint-Pierre-et-Miquelon). Chaque station leur donne un mot-clé ; à la fin, ils rédigent une invitation au festival.

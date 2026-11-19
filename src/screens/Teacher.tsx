@@ -3,6 +3,7 @@ import { ORAL_QUESTIONS, TEACHER } from '../content/finale';
 import { GROUPS } from '../content/types';
 import { completionCode } from '../engine/code';
 import { useGame } from '../state/context';
+import { CREDIT } from '../content/ui';
 import { Bi, BtnLabel } from '../ui/kit';
 
 export function Teacher() {
@@ -52,6 +53,12 @@ export function Teacher() {
           ))}
         </tbody>
       </table>
+      <p className="signature">
+        <span lang="fr">{CREDIT.fr}</span>
+        <span className="signature__en" lang="en">
+          {CREDIT.en}
+        </span>
+      </p>
       <div className="teacher__actions">
         <button type="button" className="btn btn--secondary" onClick={() => window.print()}>
           <IconPrinter size={20} aria-hidden="true" />

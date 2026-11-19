@@ -3,6 +3,10 @@ import type { Bi } from './types';
 export const GAME_TITLE = 'Mission Francophonie';
 export const GAME_SUBTITLE = 'Le signal perdu';
 
+/** Signature de l'auteur (affichée à l'accueil, à la fin, dans l'espace enseignant). */
+export const AUTHOR = 'M. Thierry';
+export const CREDIT = { fr: 'Un jeu conçu par M. Thierry', en: 'A game created by Mr. Thierry' };
+
 export const UI = {
   chooseGroup: { fr: 'Choisis ton groupe', en: 'Choose your group' },
   groupNote: {
